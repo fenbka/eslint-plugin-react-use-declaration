@@ -4,32 +4,25 @@
  */
 "use strict";
 
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 var rule = require("../../../lib/rules/react-use-declaration"),
   RuleTester = require("eslint").RuleTester;
 
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
+var errorObject = {
+  message: "Используйте useHook вместо React.useHook",
+  type: "CallExpression",
+};
 
 var ruleTester = new RuleTester();
 ruleTester.run("react-use-declaration", rule, {
-  valid: [
-    // give me some code that won't trigger a warning
-  ],
-
+  valid: ["var a = useState(false)", "useEffect(function() {}, [])"],
   invalid: [
     {
-      code: "Используйте useHook вместо React.useHook",
-      errors: [
-        {
-          message: "Fill me in.",
-          type: "Me too",
-        },
-      ],
+      code: "var a = React.useState(false)",
+      errors: [errorObject],
+    },
+    {
+      code: "React.useEffect(function() {}, [])",
+      errors: [errorObject],
     },
   ],
 });
