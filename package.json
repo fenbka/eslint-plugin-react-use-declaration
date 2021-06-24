@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-react-use-declaration",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Dont use React.useHook",
   "keywords": [
     "eslint",
